@@ -4,8 +4,34 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
+<style>
+#pw-gate{position:fixed;inset:0;z-index:9999;background:#07060c;display:flex;align-items:center;justify-content:center;font-family:'Jost',sans-serif;}
+#pw-gate .pw-box{text-align:center;padding:48px 36px;background:linear-gradient(180deg,rgba(14,11,28,.85),rgba(9,8,19,.95));border:1px solid rgba(214,175,55,.22);border-radius:8px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 30px 80px rgba(0,0,0,.5);max-width:380px;width:90%;}
+#pw-gate h2{margin:0 0 8px;font-family:'Playfair Display',serif;font-weight:700;font-size:28px;color:#f6e7ba;}
+#pw-gate p{margin:0 0 24px;font-size:14px;color:#9990b0;letter-spacing:.15em;}
+#pw-gate input{width:100%;padding:12px 16px;border:1px solid rgba(214,175,55,.3);border-radius:4px;background:rgba(7,6,12,.6);color:#efe9da;font-size:18px;text-align:center;letter-spacing:.2em;outline:none;font-family:'Jost',sans-serif;}
+#pw-gate input:focus{border-color:#d6af37;box-shadow:0 0 12px rgba(214,175,55,.2);}
+#pw-gate button{margin-top:16px;padding:10px 32px;background:linear-gradient(135deg,#d6af37,#b88a22);border:none;border-radius:4px;color:#07060c;font-weight:600;font-size:15px;cursor:pointer;letter-spacing:.1em;font-family:'Jost',sans-serif;}
+#pw-gate button:hover{background:linear-gradient(135deg,#f6e7ba,#d6af37);}
+#pw-gate .pw-err{color:#c0413f;font-size:13px;margin-top:12px;min-height:18px;}
+#pw-gate .pw-crown{font-size:48px;margin-bottom:16px;}
+</style>
 </head>
 <body>
+<div id="pw-gate">
+<div class="pw-box">
+<div class="pw-crown">👑</div>
+<h2>Couronnement 4B</h2>
+<p>CONTENU PRIV&Eacute;</p>
+<input type="password" id="pw-input" placeholder="Mot de passe" autofocus>
+<button onclick="checkPw()">Entrer</button>
+<div class="pw-err" id="pw-err"></div>
+</div>
+</div>
+<script>
+function checkPw(){var v=document.getElementById('pw-input').value;if(v==='4B!'){document.getElementById('pw-gate').style.display='none';}else{document.getElementById('pw-err').textContent='Mot de passe incorrect';document.getElementById('pw-input').value='';}}
+document.getElementById('pw-input').addEventListener('keydown',function(e){if(e.key==='Enter')checkPw();});
+</script>
 <x-dc>
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
