@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; padding: 0; background: #07060c; }
+  * { box-sizing: border-box; }
+  ::selection { background: rgba(214,175,55,.35); }
+  body { scrollbar-width: thin; scrollbar-color: #3a3252 #0a0813; }
+  @keyframes crownDrop { 0% { opacity:0; transform:translateY(-50px) rotate(-10deg) scale(.7);} 60%{transform:translateY(6px) rotate(2deg) scale(1.04);} 100%{opacity:1; transform:translateY(0) rotate(0) scale(1);} }
+  @keyframes shimmer { 0%{background-position:0% center;} 100%{background-position:200% center;} }
+  @keyframes lineGrow { 0%{transform:scaleX(0); opacity:0;} 100%{transform:scaleX(1); opacity:1;} }
+  @keyframes fadeUp { 0%{opacity:0; transform:translateY(22px);} 100%{opacity:1; transform:translateY(0);} }
+  @keyframes floatY { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-9px);} }
+  @keyframes bob { 0%,100%{transform:translateY(0); opacity:.5;} 50%{transform:translateY(8px); opacity:1;} }
+  @keyframes spin { 0%{transform:rotate(0);} 100%{transform:rotate(360deg);} }
+</style>
+</helmet>
+
+<div style="position:relative; min-height:100vh; width:100%; font-family:'Jost',sans-serif; color:#efe9da; background:#07060c;">
+
+  <!-- ===== Vidéo en fond d'écran ===== -->
+  <div style="position:fixed; inset:0; z-index:0; background:#07060c;">
+    <sc-if value="{{ hasSrc }}" hint-placeholder-val="{{ false }}">
+      <video ref="{{ videoRef }}" src="{{ videoSrc }}" autoplay loop muted playsinline
+        style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;"></video>
+    </sc-if>
+    <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(7,6,12,.55) 0%, rgba(7,6,12,.35) 30%, rgba(7,6,12,.78) 75%, rgba(7,6,12,.96) 100%);"></div>
+    <div style="position:absolute; inset:0; background:radial-gradient(120% 80% at 50% 30%, rgba(7,6,12,0) 45%, rgba(7,6,12,.6) 100%);"></div>
+  </div>
+
+  <!-- ===== Contenu ===== -->
+  <div style="position:relative; z-index:1;">
+
+    <!-- HERO -->
+    <section data-screen-label="Accueil" style="min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:60px 28px;">
+      <div style="animation:crownDrop 1.1s cubic-bezier(.2,.9,.3,1.4) both;"><div style="animation:floatY 5.5s ease-in-out infinite;">{{ crownBig }}</div></div>
+      <div style="margin-top:30px; font-weight:400; letter-spacing:.6em; font-size:13px; color:#d8c894; text-transform:uppercase; padding-left:.6em; animation:fadeUp .8s ease .4s both;">Année 2025 — 2026</div>
+      <h1 style="margin:18px 0 0; font-family:'Playfair Display'; font-weight:900; font-size:clamp(48px,9vw,104px); line-height:.96; background:linear-gradient(100deg,#fff 0%,#f6e7ba 24%,#d6af37 50%,#f6e7ba 76%,#fff 100%); background-size:200% auto; -webkit-background-clip:text; background-clip:text; color:transparent; animation:shimmer 6s linear infinite, fadeUp .9s ease .55s both;">La classe<br>des 4<span style="font-style:italic;">B</span></h1>
+      <div style="height:1px; width:180px; transform-origin:center; animation:lineGrow .9s ease .8s both; background:linear-gradient(90deg,transparent,#d6af37,transparent); margin:30px 0 22px;"></div>
+      <p style="margin:0; max-width:30ch; font-family:'Cormorant Garamond'; font-style:italic; font-size:clamp(20px,2.6vw,27px); color:#c8c0dc; line-height:1.4; animation:fadeUp .9s ease .95s both;">Une année, une classe, et des souvenirs pour toujours.</p>
+      <div style="margin-top:64px; display:flex; flex-direction:column; align-items:center; gap:10px; animation:bob 2.4s ease-in-out infinite;">
+        <span style="font-size:11px; letter-spacing:.35em; text-transform:uppercase; color:#9990b0;">Défiler</span>
+        <span style="color:#d6af37; font-size:18px;">▾</span>
+      </div>
+    </section>
+
+    <!-- REMERCIEMENTS -->
+    <section data-screen-label="Remerciements" style="display:flex; justify-content:center; padding:90px 28px;">
+      <div style="max-width:720px; width:100%; text-align:center; background:linear-gradient(180deg, rgba(14,11,28,.72), rgba(9,8,19,.82)); border:1px solid rgba(214,175,55,.18); border-radius:6px; padding:clamp(36px,6vw,72px); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); box-shadow:0 30px 80px rgba(0,0,0,.45);">
+        <div style="font-weight:400; letter-spacing:.5em; font-size:12px; color:#d8c894; text-transform:uppercase; padding-left:.5em;">Le mot de la fin</div>
+        <h2 style="margin:14px 0 0; font-family:'Playfair Display'; font-weight:700; font-size:clamp(34px,5vw,52px); color:#f6e7ba;">Merci pour cette année</h2>
+        <div style="height:1px; width:80px; margin:26px auto; background:linear-gradient(90deg,transparent,#d6af37,transparent);"></div>
+        <p style="margin:0 0 20px; font-family:'Cormorant Garamond'; font-size:clamp(19px,2.4vw,23px); line-height:1.65; color:#ded7ec;">Une année entière passée ensemble, entre les fous rires au fond de la classe et les contrôles redoutés. On a grandi, un peu, et surtout on l'a fait à plusieurs.</p>
+        <p style="margin:0; font-family:'Cormorant Garamond'; font-size:clamp(19px,2.4vw,23px); line-height:1.65; color:#ded7ec;">Merci à chacun d'entre vous pour votre énergie, votre bonne humeur et tout ce qui fait que la 4B, c'est la 4B. Que ce petit couronnement reste un souvenir de cette belle année. ✦</p>
+        <div style="margin-top:34px; font-family:'Cormorant Garamond'; font-style:italic; font-size:22px; color:#bcb2d4;">— Clément</div>
+      </div>
+    </section>
+
+    <!-- PALMARÈS -->
+    <section data-screen-label="Couronnement" style="display:flex; justify-content:center; padding:40px 28px 110px;">
+      <div style="max-width:760px; width:100%;">
+        <div style="text-align:center; margin-bottom:46px;">
+          <div style="font-weight:400; letter-spacing:.5em; font-size:12px; color:#d8c894; text-transform:uppercase; padding-left:.5em;">Le palmarès</div>
+          <h2 style="margin:14px 0 0; font-family:'Playfair Display'; font-weight:700; font-size:clamp(34px,5vw,52px); background:linear-gradient(100deg,#fff,#f6e7ba 35%,#d6af37 55%,#f6e7ba 75%,#fff); background-size:200% auto; -webkit-background-clip:text; background-clip:text; color:transparent; animation:shimmer 6s linear infinite;">Le Couronnement</h2>
+          <p style="margin:14px 0 0; font-family:'Cormorant Garamond'; font-style:italic; font-size:22px; color:#bcb2d4;">14 titres décernés à la classe 4B</p>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:0; background:linear-gradient(180deg, rgba(14,11,28,.66), rgba(9,8,19,.78)); border:1px solid rgba(214,175,55,.16); border-radius:6px; overflow:hidden; backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); box-shadow:0 30px 80px rgba(0,0,0,.4);">
+          <sc-for list="{{ cats }}" as="cat" hint-placeholder-count="14">
+            <div style="display:flex; align-items:center; gap:22px; padding:20px clamp(20px,4vw,34px); border-bottom:1px solid rgba(214,175,55,.1);">
+              <span style="flex:none; font-family:'Playfair Display'; font-weight:700; font-size:24px; color:#d6af37; width:42px; text-align:right; opacity:.85;">{{ cat.num }}</span>
+              <span style="flex:none; width:1px; height:30px; background:linear-gradient(180deg,transparent,rgba(214,175,55,.4),transparent);"></span>
+              <span style="font-family:'Playfair Display'; font-weight:500; font-size:clamp(19px,2.6vw,26px); color:#f1ead9;">{{ cat.name }}</span>
+              <span style="margin-left:auto; flex:none; color:#d6af37; font-size:15px; opacity:.7;">♛</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer style="text-align:center; padding:50px 28px 80px;">
+      <div style="font-family:'Playfair Display'; font-weight:700; font-size:clamp(26px,4vw,40px); color:#f6e7ba;">Longue vie à la 4<span style="font-style:italic;">B</span> 👑</div>
+      <div style="margin-top:12px; font-size:12px; letter-spacing:.3em; text-transform:uppercase; color:#8c84a4;">Couronnement · 2026</div>
+    </footer>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.videoRef = React.createRef();
+    this.VIDEO = "uploads/0623-2_HAyuvzH4.mp4";
+    this.state = { srcUrl: "" };
+    this.catNames = [
+      "La déléguée",
+      "Celle qui n'est jamais là",
+      "Le duo de mecs",
+      "Les duos de filles",
+      "Le trio de filles",
+      "Les meilleurs potes",
+      "Les perturbateurs",
+      "Les sportifs",
+      "Les travailleurs",
+      "Les petits",
+      "Les babols",
+      "Les gamers",
+      "Les 4B",
+      "La meilleure prof",
+    ];
+  }
+
+  async componentDidMount() {
+    try {
+      const r = await fetch(this.VIDEO);
+      const b = await r.blob();
+      this._objUrl = URL.createObjectURL(b);
+      this.setState({ srcUrl: this._objUrl }, () => {
+        const v = this.videoRef.current;
+        if (v) {
+          v.loop = true; v.muted = true;
+          v.addEventListener("ended", () => { try { v.currentTime = 0; v.play(); } catch (e) {} });
+          const p = v.play(); if (p && p.catch) p.catch(() => {});
+        }
+      });
+    } catch (e) {}
+  }
+  componentWillUnmount() { if (this._objUrl) URL.revokeObjectURL(this._objUrl); }
+
+  crownBig() {
+    const s = 128;
+    return React.createElement("svg", { width: s, height: s * 0.74, viewBox: "0 0 120 88", style: { filter: "drop-shadow(0 8px 26px rgba(214,175,55,.5))", display: "block" } },
+      React.createElement("defs", null,
+        React.createElement("linearGradient", { id: "gldH", x1: "0", y1: "0", x2: "0", y2: "1" },
+          React.createElement("stop", { offset: "0", stopColor: "#fbe9ad" }),
+          React.createElement("stop", { offset: "0.5", stopColor: "#e2bf57" }),
+          React.createElement("stop", { offset: "1", stopColor: "#b88a22" }))),
+      React.createElement("path", { d: "M10 78 L16 30 L40 54 L60 16 L80 54 L104 30 L110 78 Z", fill: "url(#gldH)", stroke: "#8a6516", strokeWidth: "1.5", strokeLinejoin: "round" }),
+      React.createElement("rect", { x: "10", y: "78", width: "100", height: "9", rx: "2", fill: "url(#gldH)", stroke: "#8a6516", strokeWidth: "1.5" }),
+      React.createElement("circle", { cx: "16", cy: "26", r: "5", fill: "#fbe9ad", stroke: "#8a6516", strokeWidth: "1.2" }),
+      React.createElement("circle", { cx: "60", cy: "12", r: "5.5", fill: "#ffd9e0", stroke: "#8a6516", strokeWidth: "1.2" }),
+      React.createElement("circle", { cx: "104", cy: "26", r: "5", fill: "#fbe9ad", stroke: "#8a6516", strokeWidth: "1.2" }),
+      React.createElement("circle", { cx: "44", cy: "70", r: "3.2", fill: "#c0413f" }),
+      React.createElement("circle", { cx: "60", cy: "72", r: "3.2", fill: "#2f6db0" }),
+      React.createElement("circle", { cx: "76", cy: "70", r: "3.2", fill: "#c0413f" }));
+  }
+
+  renderVals() {
+    return {
+      videoSrc: this.state.srcUrl,
+      hasSrc: !!this.state.srcUrl,
+      videoRef: this.videoRef,
+      crownBig: this.crownBig(),
+      cats: this.catNames.map((name, i) => ({ name, num: String(i + 1).padStart(2, "0") })),
+    };
+  }
+}
+</script>
+</body>
+</html>
